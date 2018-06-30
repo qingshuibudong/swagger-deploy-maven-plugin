@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kpy</groupId>
+    <artifactId>swagger-deploy-maven-plugin</artifactId>
+    <version>1.1</version>
+
+    <packaging>maven-plugin</packaging>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+
+        <swagger.maven.plugin.version>3.1.7</swagger.maven.plugin.version>
+        <maven.plugin.version>3.0</maven.plugin.version>
+    </properties>
+
+    <dependencies>
+        <!--maven 插件开发-->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${maven.plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven.plugin.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--插件调用-->
+        <dependency>
+            <groupId>org.twdata.maven</groupId>
+            <artifactId>mojo-executor</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <!--工具包-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+    <!-- 上传Jar包到私有仓库 -->
+    <distributionManagement>
+        <repository>
+            <id>pphy-host</id>
+            <name>pphy-host</name>
+            <url>${pphy.host.domain}</url>
+        </repository>
+        <snapshotRepository>
+            <id>pphy-host</id>
+            <name>pphy-host</name>
+            <url>${pphy.snapshot.domain}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--从私服下载依赖-->
+    <repositories>
+        <repository>
+            <id>pphy-group</id>
+            <name>pphy-group</name>
+            <url>${pphy.group.domain}</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!--snapshot的包可以下下来-->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mirror-aliyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+</project>
