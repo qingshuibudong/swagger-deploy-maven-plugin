@@ -61,7 +61,7 @@
     var container=$('#content');
 
     var menu=genMenu(container);
-    var menuContainer=$('<div></div>');
+    var menuContainer=$('<div class="menu-container"></div>');
     menuContainer.append(menu);
 
     var newContainer=$("<div id='newContainer'><div>");
